@@ -87,7 +87,8 @@ exports.getUserProject = async (req, res) => {
         res.send(401).json("Request failed due to:", err)
     }
 }
-// 4) Edit user project
+
+//4 edit user project
 exports.editUserProject = async (req, res) => {
     const { id } = req.params;
     const userId = req.payload;
@@ -118,14 +119,16 @@ exports.editUserProject = async (req, res) => {
 
 }
 
-// 5)Delete a project
-exports.deleteUserProjects = async (req, res) => {
-    const { id } = req.params
+//5 delete a project
+exports.deleteUserProject = async (req, res) => {
+    console.log("Inside delete controller")
+    const { id } = req.params;
+    console.log(id)
     try {
-        const removedProject=await projects.findByIdAndDelete({_id:id})
+        const removedProject = await projects.findByIdAndDelete({_id:id});
         res.status(200).json(removedProject)
-    } catch (err) {
+    }
+    catch (err) {
         res.status(401).json(err)
     }
 }
-
